@@ -22,3 +22,6 @@ Route::get('/welcome', function () {
 Route::get('/user/{id?}', function (?int $id = null) {
     return $id ? 'Пользователь с ID: ' . $id : 'Пользователь анонимен';
 });
+Route::get('/post/{slug}', function (string $slug) {
+    return 'Параметр соответствует регулярному выражению. Параметр: ' . $slug;
+})->where('slug', '[a-z0-9-]+');
