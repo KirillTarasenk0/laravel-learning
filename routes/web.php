@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/welcome', function () {
     return 'Добро пожаловать в Laravel!';
 });
+Route::get('/user/{id}', function (int $id) {
+    return 'Пользователь с ID: ' . $id;
+});
