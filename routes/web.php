@@ -25,3 +25,9 @@ Route::get('/user/{id?}', function (?int $id = null) {
 Route::get('/post/{slug}', function (string $slug) {
     return 'Параметр соответствует регулярному выражению. Параметр: ' . $slug;
 })->where('slug', '[a-z0-9-]+');
+Route::match(['get', 'post'], '/submit-contact-form', function () {
+    if (request()->isMethod('post')) {
+        return 'Форма была отправлена с помощью метода post';
+    }
+    return 'Форма была отправлена с помощью метода get';
+});
