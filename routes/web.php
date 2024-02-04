@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,7 @@ Route::match(['get', 'post'], '/submit-contact-form', function () {
 });
 Route::get('/greet/{name}', function (string $name) {
     return view('greet', ['name' => $name]);
+});
+Route::get('/api/users', function () {
+    return response()->json([['userName' => 'Kirill Tarasenko'], ['userName' => 'Ivan Ivanov'], ['userName' => 'Egor Egorov']]);
 });
