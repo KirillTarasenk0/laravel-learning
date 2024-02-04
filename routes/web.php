@@ -31,3 +31,6 @@ Route::match(['get', 'post'], '/submit-contact-form', function () {
     }
     return 'Форма была отправлена с помощью метода get';
 });
+Route::get('/greet/{name}', function (string $name) {
+    return view('greet', ['name' => $name]);
+});
