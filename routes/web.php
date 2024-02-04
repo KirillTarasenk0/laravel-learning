@@ -46,3 +46,17 @@ Route::get('/old-home', function () {
     return redirect('/new-home');
 });
 Route::match(['get', 'post'], '/contact' , [PostController::class, 'index']);
+Route::get('/calculate/{operation}/{number1}/{number2}', function (string $operation, float $number1, float $number2) {
+     switch ($operation) {
+         case '+':
+             return $number1 + $number2;
+         case '-':
+             return $number1 - $number2;
+         case '*':
+             return $number1 * $number2;
+         case ':':
+             return $number1 / $number2;
+         default:
+             return 'Вы допустили ошибку при вводе параметров или операции. Пожалуйста, повторите ввод.';
+     }
+});
