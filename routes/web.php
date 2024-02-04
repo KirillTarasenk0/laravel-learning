@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,7 @@ Route::get('/greet/{name}', function (string $name) {
 });
 Route::get('/api/users', function () {
     return response()->json([['userName' => 'Kirill Tarasenko'], ['userName' => 'Ivan Ivanov'], ['userName' => 'Egor Egorov']]);
+});
+Route::get('/time', function () {
+    return response()->json(['time' => Carbon::now('Europe/Minsk')->toDateTimeString()]);
 });
