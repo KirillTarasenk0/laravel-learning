@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +45,4 @@ Route::get('/time', function () {
 Route::get('/old-home', function () {
     return redirect('/new-home');
 });
+Route::match(['get', 'post'], '/contact' , [PostController::class, 'index']);
