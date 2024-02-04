@@ -42,3 +42,6 @@ Route::get('/api/users', function () {
 Route::get('/time', function () {
     return response()->json(['time' => Carbon::now('Europe/Minsk')->toDateTimeString()]);
 });
+Route::get('/old-home', function () {
+    return redirect('/new-home');
+});
