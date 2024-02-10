@@ -15,9 +15,10 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [\App\Http\Controllers\Controller::class, 'index']);
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 Route::get('/welcome', function () {
     return 'Добро пожаловать в Laravel!';
 });
