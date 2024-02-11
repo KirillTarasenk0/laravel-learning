@@ -12,9 +12,9 @@ class Customer extends Model
     use HasFactory;
     protected $table = 'customers';
     protected $primaryKey = 'customerNumber';
-    public function employees(): HasMany
+    public function employees(): BelongsTo
     {
-        return $this->hasMany(Employee::class, 'reportsTo');
+        return $this->belongsTo(Employee::class, 'employeeNumber');
     }
     public function orders(): BelongsTo
     {
