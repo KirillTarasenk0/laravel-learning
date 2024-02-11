@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use App\Models\Customer;
 use App\Models\Employee;
 
 
@@ -14,16 +14,18 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
     public function index()
     {
-        $info = Employee::with('customer')->get();
-        //$info = Employee::find(1702)->customer;
+        echo 'Все покупатели вместе с привязанными к ним работниками: <br>';
+        $people = Employee::with('customer')->get();
         echo '<pre>';
-        foreach ($info as $item) {
-            echo $item . '<br>';
+        foreach ($people as $person) {
+            echo $person . '<br>';
         }
         echo '</pre>';
-        /*$customers = Customer::with('employees')->get();
-        echo '<pre>';
-        print_r($customers);
-        echo '</pre>';*/
+        echo 'Список оплат, где дата оплаты больше чем 2004 год: <br>';
+        $payments = Payment::where('payments.paymentDate', '>', '2004-12-31')->get();
+        foreach ($payments as $payment) {
+            echo $payment . '<br>';
+        }
+
     }
 }
