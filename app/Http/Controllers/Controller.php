@@ -26,6 +26,5 @@ class Controller extends BaseController
         foreach ($payments as $payment) {
             echo $payment . '<br>';
         }
-
     }
 }
