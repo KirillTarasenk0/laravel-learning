@@ -17,11 +17,11 @@ class Product extends Model
     public $timestamps = false;
     public function orderDetails(): HasMany
     {
-        return $this->hasMany(OrderDetail::class, 'productCode');
+        return $this->hasMany(OrderDetail::class, 'productCode', 'productCode');
     }
     public function productLines(): BelongsTo
     {
-        return $this->belongsTo(ProductLine::class, 'productLine');
+        return $this->belongsTo(ProductLine::class, 'productLine', 'productLine');
     }
     protected static function newFactory(): Factory
     {

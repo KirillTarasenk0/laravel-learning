@@ -14,10 +14,10 @@ class Employee extends Model
     protected $primaryKey = 'employeeNumber';
     public function customer(): HasMany
     {
-        return $this->hasMany(Customer::class, 'salesRepEmployeeNumber');
+        return $this->hasMany(Customer::class, 'salesRepEmployeeNumber', 'employeeNumber');
     }
     public function office(): BelongsTo
     {
-        return $this->belongsTo(Office::class, 'officeCode');
+        return $this->belongsTo(Office::class, 'officeCode', 'officeCode');
     }
 }

@@ -12,12 +12,12 @@ class Order extends Model
     use HasFactory;
     protected $table = 'orders';
     protected $primaryKey = 'orderNumber';
-    public function customers(): HasMany
+    public function customers(): BelongsTo
     {
-        return $this->hasMany(Customer::class, 'customerNumber');
+        return $this->belongsTo(Customer::class, 'customerNumber', 'customerNumber');
     }
-    public function orderDetails(): BelongsTo
+    public function orderDetails(): HasMany
     {
-        return $this->belongsTo(OrderDetail::class, 'customerNumber');
+        return $this->hasMany(OrderDetail::class, 'orderNumber', 'orderNumber');
     }
 }

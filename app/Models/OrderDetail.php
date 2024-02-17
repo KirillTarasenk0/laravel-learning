@@ -13,10 +13,10 @@ class OrderDetail extends Model
     protected $primaryKey = 'orderNumber';
     public function order(): BelongsTo
     {
-        return $this->belongsTo(Order::class, 'orderNumber');
+        return $this->belongsTo(Order::class, 'customerNumber','customerNumber');
     }
     public function product(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'productCode');
+        return $this->belongsTo(Product::class, 'productCode', 'productCode');
     }
 }

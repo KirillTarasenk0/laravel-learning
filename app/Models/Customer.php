@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Customer extends Model
@@ -14,14 +15,14 @@ class Customer extends Model
     protected $primaryKey = 'customerNumber';
     public function employees(): BelongsTo
     {
-        return $this->belongsTo(Employee::class, 'employeeNumber');
+        return $this->belongsTo(Employee::class, 'employeeNumber', 'salesRepEmployeeNumber');
     }
-    public function orders(): BelongsTo
+    public function orders(): HasOne
     {
-        return $this->belongsTo(Order::class, 'customerNumber');
+        return $this->hasOne(Order::class, 'customerNumber', 'customerNumber');
     }
     public function payments(): HasMany
     {
-        return $this->hasMany(Payment::class, 'customerNumber');
+        return $this->hasMany(Payment::class, 'customerNumber', 'customerNumber');
     }
 }

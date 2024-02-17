@@ -16,7 +16,7 @@ class ProductLine extends Model
     public $timestamps = false;
     public function products(): HasMany
     {
-        return $this->hasMany(Product::class, 'productLine');
+        return $this->hasMany(Product::class, 'productLine', 'productLine');
     }
     public static function newFactory(): Factory
     {

@@ -13,6 +13,6 @@ class Office extends Model
     protected $primaryKey = 'officeCode';
     public function employees(): HasMany
     {
-        return $this->hasMany(Employee::class, 'officeCode');
+        return $this->hasMany(Employee::class, 'officeCode', 'officeCode');
     }
 }

@@ -11,7 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('test_products');
+        Schema::table('test_products', function (Blueprint $table) {
+            $table->renameColumn('test_products_id', 'id');
+        });
     }
 
     /**
@@ -19,13 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::create('test_products', function (Blueprint $table) {
-            $table->id('test_products_id');
-            $table->string('name');
-            $table->string('description');
-            $table->float('price');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+        Schema::table('test_products', function (Blueprint $table) {
+            $table->renameColumn('id', 'test_products_id');
         });
     }
 };

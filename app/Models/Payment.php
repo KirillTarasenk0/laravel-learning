@@ -13,6 +13,6 @@ class Payment extends Model
     protected $primaryKey = 'customerNumber';
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'customerNumber');
+        return $this->belongsTo(Customer::class, 'customerNumber', 'customerNumber');
     }
 }

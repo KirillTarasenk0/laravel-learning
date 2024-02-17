@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Routing\Controller as BaseController;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     public function index(Request $request): View
     {
