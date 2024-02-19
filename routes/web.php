@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [\App\Http\Controllers\Controller::class, 'index']);
+Route::get('/welcome', function () {
+    return 'Добро пожаловать в Laravel!';
 });
+Route::get('/user/{id?}', function (int $id = null) {
+    return $id ? 'Пользователь с ID: ' . $id : 'Пользователь анонимен';
+});
+Route::get('/post/{slug}', function (string $slug) {
+    return 'Параметр соответствует регулярному выражению. Параметр: ' . $slug;
+})->where('slug', '[a-z0-9-]+');
+Route::match(['get', 'post'], '/submit-contact-form', function () {
+    if (request()->isMethod('post')) {
+        return 'Форма была отправлена с помощью метода post';
+    }
+    return 'Форма была отправлена с помощью метода get';
+});
+Route::get('/greet/{name}', function (string $name) {
+    return view('greet', ['name' => $name]);
+});
+Route::get('/time', function () {
+    return response()->json(['time' => Carbon::now('Europe/Minsk')->toDateTimeString()]);
+});
+Route::get('/new-home', function () {
+    return 'New home';
+});
+Route::get('/old-home', function () {
+    return redirect('/new-home');
+});
+Route::match(['get', 'post'], '/contact', [PostController::class, 'index']);
+Route::get('/calculate/{operation}/{number1}/{number2}', function (string $operation, float $number1, float $number2) {
+     switch ($operation) {
+         case '+':
+             return $number1 + $number2;
+         case '-':
+             return $number1 - $number2;
+         case '*':
+             return $number1 * $number2;
+         case ':':
+             return $number1 / $number2;
+         default:
+             return 'Вы допустили ошибку при вводе параметров или операции. Пожалуйста, повторите ввод.';
+     }
+});
+Route::get('/order/{orderNumber}', [OrderController::class, 'index'])->where('orderNumber', '[0-9]+');;
