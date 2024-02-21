@@ -141,6 +141,7 @@ return [
 
     'maintenance' => [
         'driver' => 'file',
+        'maintenance_mod' => false,
         // 'store' => 'redis',
     ],
 

@@ -60,3 +60,14 @@ Route::get('/calculate/{operation}/{number1}/{number2}', function (string $opera
      }
 });
 Route::get('/order/{orderNumber}', [OrderController::class, 'index'])->where('orderNumber', '[0-9]+');;
+Route::get('/site', function () {
+    return view('withoutTechnicalWorks');
+})->middleware(\App\Http\Middleware\MaintenanceMode::class);
+Route::get('/payment', function () {
+    return 'Не админ роут';
+})->middleware('adminToken')->name('user');
+Route::middleware('adminToken')->group(function () {
+    Route::get('/admin/payment', function () {
+        return 'Админ роут';
+    })->name('admin');
+});
