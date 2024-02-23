@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductRatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,5 @@ Route::get('/calculate/{operation}/{number1}/{number2}', function (string $opera
      }
 });
 Route::get('/order/{orderNumber}', [OrderController::class, 'index'])->where('orderNumber', '[0-9]+');;
+Route::post('/pages', [ProductRatingController::class, 'add']);
+Route::get('/pages', [ProductRatingController::class, 'index'])->name('pages');
