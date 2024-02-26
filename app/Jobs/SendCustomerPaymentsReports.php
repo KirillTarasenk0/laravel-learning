@@ -40,10 +40,4 @@ class SendCustomerPaymentsReports implements ShouldQueue
             'оплаты' => $customerPayments
         ]);
     }
-    /*public function handle(): void
-    {
-        Log::debug('Оплаты покупателей', [
-            'оплаты' => $this->customer
-        ]);
-    }*/
 }
