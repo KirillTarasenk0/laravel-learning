@@ -23,6 +23,6 @@ class OrderStatusListener
      */
     public function handle(OrderStatusEvent $event): void
     {
-        Mail::to('ktarasenko003@gmail.com')->queue(new OrderStatusMail());
+        Mail::to('ktarasenko003@gmail.com')->send(new OrderStatusMail());
     }
 }
