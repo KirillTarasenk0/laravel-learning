@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoadLogController;
+use App\Http\Controllers\UploadingFilesController;
+use App\Http\Controllers\DocumentManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', function () {
     return response()->json([['userName' => 'Kirill Tarasenko'], ['userName' => 'Ivan Ivanov'], ['userName' => 'Egor Egorov']]);
 });
+Route::post('/loadLog', [LoadLogController::class, 'store']);
+Route::post('/uploadFiles', [UploadingFilesController::class, 'store']);
+Route::post('/manageDocuments', [DocumentManagerController::class, 'store']);
