@@ -4,13 +4,19 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use App\Models\Office;
+use App\Models\Employee;
 
 class EmployeeNumber implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if ($value !== 5) {
-            $fail('The :attribute must be 5');
+        $employee = Employee::find($value);
+        if ($employee) {
+            $office = Office::find($employee->officeCode);
+            if ($office->city !== 'Tokyo') {
+                $fail('Employee is not from Tokyo');
+            }
         }
     }
 }

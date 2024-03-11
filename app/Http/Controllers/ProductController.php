@@ -11,15 +11,17 @@ class ProductController extends BaseController
 {
     public function index(Request $request): JsonResponse
     {
-        if ($request->query('buyPrice')) {
-            $products = Product::where('buyPrice', $request->query('buyPrice'))->get();
-        } else if ($request->query('productVendor')) {
-            $products = Product::where('productVendor', $request->query('productVendor'))->get();
-        } else if ($request->query('productLine')) {
-            $products = Product::where('productLine', $request->query('productLine'))->get();
-        } else {
-            $products = Product::all();
+        $query = Product::query();
+        if ($request->has('buyPrice')) {
+            $query->where('buyPrice', $request->input('buyPrice'));
         }
+        if ($request->has('productVendor')) {
+            $query->where('productVendor', $request->input('productVendor'));
+        }
+        if ($request->has('productLine')) {
+            $query->where('productLine', $request->input('productLine'));
+        }
+        $products = $query->get();
         return response()->json(['success' => true, 'data' => $products]);
     }
 }
