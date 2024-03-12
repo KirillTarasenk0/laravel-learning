@@ -10,7 +10,7 @@ class CheckAdminToken
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->header('Authorization') === 'Admin') {
+        if ($request->header('Authorization') === config('app.adminToken')) {
             return redirect()->route('admin');
         }
         return $next($request);

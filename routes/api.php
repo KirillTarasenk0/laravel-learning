@@ -20,11 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', function () {
     return response()->json([['userName' => 'Kirill Tarasenko'], ['userName' => 'Ivan Ivanov'], ['userName' => 'Egor Egorov']]);
 });
-Route::get('/payment', function () {
-   return response()->json(['Состояние ответа:' => 'Не админ роут']);
-})->middleware('adminToken')->name('user');
 Route::middleware('adminToken')->group(function () {
     Route::get('/admin/payment', function () {
         return response()->json(['Состояние ответа:' => 'Админ роут']);
     })->name('admin');
+    Route::get('/payment', function () {
+        return response()->json(['Состояние ответа:' => 'Не админ роут']);
+    })->name('user');
 });

@@ -63,11 +63,11 @@ Route::get('/order/{orderNumber}', [OrderController::class, 'index'])->where('or
 Route::get('/site', function () {
     return view('withoutTechnicalWorks');
 })->middleware(\App\Http\Middleware\MaintenanceMode::class);
-Route::get('/payment', function () {
-    return 'Не админ роут';
-})->middleware('adminToken')->name('user');
 Route::middleware('adminToken')->group(function () {
     Route::get('/admin/payment', function () {
-        return 'Админ роут';
+        return response()->json(['Состояние ответа:' => 'Админ роут']);
     })->name('admin');
+    Route::get('/payment', function () {
+        return response()->json(['Состояние ответа:' => 'Не админ роут']);
+    })->name('user');
 });
