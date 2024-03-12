@@ -20,13 +20,7 @@ class ProductRatingController extends Controller
     }
     public function index(): View
     {
-        $productMarks = ProductRating::select('mark')->get();
-        $productCount = ProductRating::count();
-        $averageRating = 0;
-        foreach ($productMarks as $mark) {
-            $averageRating += $mark['mark'];
-        }
-        $averageRating /= $productCount;
+        $averageRating = ProductRating::average('mark');
         return view('layouts.app')->with('averageRating', $averageRating);
     }
 }
