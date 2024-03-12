@@ -11,7 +11,6 @@ class UpdateCustomerProfileController extends BaseController
 {
     public function update(UpdateCustomerProfileRequest $request): JsonResponse
     {
-        $request->validated();
         Customer::where('customerNumber', '=', $request->input('customerNumber'))
             ->update([
                 'contactFirstName' => $request->input('contactFirstName'),

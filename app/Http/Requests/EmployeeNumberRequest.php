@@ -14,7 +14,7 @@ class EmployeeNumberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'officeCode' => new EmployeeNumber
+            'employeeNumber' => ['required', 'exists:employees', new EmployeeNumber()]
         ];
     }
 }

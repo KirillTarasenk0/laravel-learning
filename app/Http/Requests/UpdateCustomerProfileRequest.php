@@ -22,8 +22,4 @@ class UpdateCustomerProfileRequest extends FormRequest
             'postalCode' => ['string']
         ];
     }
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
-    }
 }
