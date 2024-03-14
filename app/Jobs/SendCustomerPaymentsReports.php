@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -15,26 +16,25 @@ class SendCustomerPaymentsReports implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public function __construct(
-        private readonly int|null $customerNumber,
-        private readonly string|null $timeFrom,
-        private readonly string|null $timeTo
+        private readonly ?int $customerNumber,
+        private readonly ?string $timeFrom,
+        private readonly ?string $timeTo
     ){}
     public function handle(): void
     {
         $customerPayments = null;
         if ($this->customerNumber) {
-            $customerPayments = Customer::join('payments', 'customers.customerNumber', '=', 'payments.customerNumber')
-                ->where('customers.customerNumber', '=', $this->customerNumber)
-                ->get();
+            $customerPayments = Customer::whereHas('payments', function (Builder $query) {
+                $query->where('customers.customerNumber', '=', $this->customerNumber);
+            })->get();
         }
         if ($this->timeFrom && $this->timeTo) {
-            $customerPayments = Customer::join('payments', 'customers.customerNumber', '=', 'payments.customerNumber')
-                ->whereBetween('payments.paymentDate', [$this->timeFrom, $this->timeTo])
-                ->get();
+            $customerPayments = Customer::whereHas('payments', function (Builder $query) {
+               $query->whereBetween('payments.paymentDate', [$this->timeFrom, $this->timeTo]);
+            })->get();
         }
         if ($this->customerNumber === null && $this->timeFrom === null && $this->timeTo === null) {
-            $customerPayments = Customer::join('payments', 'customers.customerNumber', '=', 'payments.customerNumber')
-                ->get();
+            $customerPayments = Customer::has('payments')->get();
         }
         Log::debug('Оплаты покупателей', [
             'оплаты' => $customerPayments

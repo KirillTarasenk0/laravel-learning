@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Cache;
 
 class RedisPostController extends BaseController
 {
-    public function index(): void
+    public function index()
     {
         $posts = Cache::rememberForever('posts:all', function () {
             return Post::all();
         })->each(function ($post) {
             Cache::put('posts:' . $post->id, $post);
         });
-        dd($posts->pluck('title'));
+        return $posts->pluck('title');
     }
-    public function show($id): void
+    public function show($id)
     {
         $posts = Cache::get('posts:' . $id);
-        dd($posts->title);
+        return $posts->title;
     }
 }
