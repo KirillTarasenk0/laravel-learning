@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use App\Events\OrderStatusEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderStatusMail;
 
@@ -23,6 +22,6 @@ class OrderStatusListener
      */
     public function handle(OrderStatusEvent $event): void
     {
-        Mail::to('ktarasenko003@gmail.com')->send(new OrderStatusMail());
+        Mail::to('ktarasenkotarasenko@yandex.ru')->send(new OrderStatusMail());
     }
 }

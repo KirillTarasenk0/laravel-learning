@@ -19,36 +19,4 @@ class UserInfoObserver
             'Email пользователя' => $userInfo->userEmail
         ]);
     }
-
-    /**
-     * Handle the User "updated" event.
-     */
-    public function updated(UserInfo $userInfo): void
-    {
-        //
-    }
-
-    /**
-     * Handle the User "deleted" event.
-     */
-    public function deleted(UserInfo $userInfo): void
-    {
-        //
-    }
-
-    /**
-     * Handle the User "restored" event.
-     */
-    public function restored(UserInfo $userInfo): void
-    {
-        //
-    }
-
-    /**
-     * Handle the User "force deleted" event.
-     */
-    public function forceDeleted(UserInfo $userInfo): void
-    {
-        //
-    }
 }

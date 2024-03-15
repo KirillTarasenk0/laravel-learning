@@ -11,7 +11,7 @@ class OrderStatusController extends Controller
 {
     public function update(int $orderNumber, string $orderStatus): JsonResponse
     {
-        $order = Order::find($orderNumber);
+        $order = Order::findOrFail($orderNumber);
         if ($order) {
             $order->status = $orderStatus;
             $order->save();
