@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckEmployeeOfficeController;
 
 use App\Models\Product;
 use App\Http\Resources\ProductCollectionResource;
