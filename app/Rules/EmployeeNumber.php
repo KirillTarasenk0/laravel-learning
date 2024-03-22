@@ -4,8 +4,8 @@ namespace App\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use App\Models\Employee;
 use App\Models\Office;
+use App\Models\Employee;
 
 class EmployeeNumber implements ValidationRule
 {

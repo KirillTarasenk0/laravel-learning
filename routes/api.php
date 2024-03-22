@@ -1,9 +1,10 @@
 <?php
 
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+
+use App\Models\Product;
 use App\Http\Resources\ProductCollectionResource;
 use App\Http\Controllers\UpdateCustomerProfileController;
 
@@ -25,6 +26,7 @@ Route::get('/users', function () {
     return response()->json([['userName' => 'Kirill Tarasenko'], ['userName' => 'Ivan Ivanov'], ['userName' => 'Egor Egorov']]);
 });
 Route::get('/products', [ProductController::class, 'index']);
+
 Route::get('/productList', function () {
     return ProductCollectionResource::collection(Product::select('productName', 'buyPrice', 'productLine')->paginate(10));
 });
