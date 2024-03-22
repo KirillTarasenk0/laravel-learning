@@ -26,7 +26,7 @@ Route::get('/users', function () {
     return response()->json([['userName' => 'Kirill Tarasenko'], ['userName' => 'Ivan Ivanov'], ['userName' => 'Egor Egorov']]);
 });
 Route::get('/products', [ProductController::class, 'index']);
-
+Route::get('/checkEmployeeNumber', [CheckEmployeeOfficeController::class, 'index']);
 Route::get('/productList', function () {
     return ProductCollectionResource::collection(Product::select('productName', 'buyPrice', 'productLine')->paginate(10));
 });
