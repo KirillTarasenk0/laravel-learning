@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckEmployeeOfficeController;
 
+use App\Models\Product;
+use App\Http\Resources\ProductCollectionResource;
+use App\Http\Controllers\UpdateCustomerProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,3 +28,7 @@ Route::get('/users', function () {
 });
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/checkEmployeeNumber', [CheckEmployeeOfficeController::class, 'index']);
+Route::get('/productList', function () {
+    return ProductCollectionResource::collection(Product::select('productName', 'buyPrice', 'productLine')->paginate(10));
+});
+Route::patch('/updateCustomerProfile', [UpdateCustomerProfileController::class, 'update']);
