@@ -63,3 +63,14 @@ Route::get('/calculate/{operation}/{number1}/{number2}', function (string $opera
 Route::get('/order/{orderNumber}', [OrderController::class, 'index'])->where('orderNumber', '[0-9]+');;
 Route::get('/registration', [RegistrationController::class, 'create']);
 Route::post('/registration', [RegistrationController::class, 'store']);
+Route::get('/site', function () {
+    return view('withoutTechnicalWorks');
+})->middleware(\App\Http\Middleware\MaintenanceMode::class);
+Route::middleware('adminToken')->group(function () {
+    Route::get('/admin/payment', function () {
+        return response()->json(['Состояние ответа:' => 'Админ роут']);
+    })->name('admin');
+    Route::get('/payment', function () {
+        return response()->json(['Состояние ответа:' => 'Не админ роут']);
+    })->name('user');
+});
