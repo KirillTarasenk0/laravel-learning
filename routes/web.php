@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ProductRatingController;
+use App\Http\Controllers\RedisPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,3 +78,5 @@ Route::middleware('adminToken')->group(function () {
 });
 Route::post('/pages', [ProductRatingController::class, 'add']);
 Route::get('/pages', [ProductRatingController::class, 'index'])->name('pages');
+Route::get('/posts', [RedisPostController::class, 'index']);
+Route::get('/posts/{id}', [RedisPostController::class, 'show']);

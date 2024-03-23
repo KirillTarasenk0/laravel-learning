@@ -8,6 +8,8 @@ use App\Http\Controllers\CheckEmployeeOfficeController;
 use App\Models\Product;
 use App\Http\Resources\ProductCollectionResource;
 use App\Http\Controllers\UpdateCustomerProfileController;
+use App\Http\Controllers\SendCustomerPaymentsController;
+use App\Http\Controllers\UserRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +42,5 @@ Route::middleware('adminToken')->group(function () {
         return response()->json(['Состояние ответа:' => 'Не админ роут']);
     })->name('user');
 });  
+Route::get('/paymentsReport/{customerNumber?}/{timeFrom?}/{timeTo?}', [SendCustomerPaymentsController::class, 'index']);
+Route::get('/userRegistration', [UserRegistrationController::class, 'index']);
