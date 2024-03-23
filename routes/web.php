@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ProductRatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +75,5 @@ Route::middleware('adminToken')->group(function () {
         return response()->json(['Состояние ответа:' => 'Не админ роут']);
     })->name('user');
 });
+Route::post('/pages', [ProductRatingController::class, 'add']);
+Route::get('/pages', [ProductRatingController::class, 'index'])->name('pages');
