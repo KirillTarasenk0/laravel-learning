@@ -13,6 +13,7 @@ class Customer extends Model
     use HasFactory;
     protected $table = 'customers';
     protected $primaryKey = 'customerNumber';
+    public $timestamps = false;
     public function employees(): BelongsTo
     {
         return $this->belongsTo(Employee::class, 'employeeNumber', 'salesRepEmployeeNumber');

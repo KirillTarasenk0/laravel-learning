@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,8 @@ Route::get('/calculate/{operation}/{number1}/{number2}', function (string $opera
      }
 });
 Route::get('/order/{orderNumber}', [OrderController::class, 'index'])->where('orderNumber', '[0-9]+');;
+Route::get('/registration', [RegistrationController::class, 'create']);
+Route::post('/registration', [RegistrationController::class, 'store']);
 Route::get('/site', function () {
     return view('withoutTechnicalWorks');
 })->middleware(\App\Http\Middleware\MaintenanceMode::class);
