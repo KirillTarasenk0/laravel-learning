@@ -10,6 +10,9 @@ use App\Http\Resources\ProductCollectionResource;
 use App\Http\Controllers\UpdateCustomerProfileController;
 use App\Http\Controllers\SendCustomerPaymentsController;
 use App\Http\Controllers\UserRegistrationController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +47,6 @@ Route::middleware('adminToken')->group(function () {
 });  
 Route::get('/paymentsReport/{customerNumber?}/{timeFrom?}/{timeTo?}', [SendCustomerPaymentsController::class, 'index']);
 Route::get('/userRegistration', [UserRegistrationController::class, 'index']);
+Route::post('/userCreate', [UserController::class, 'store']);
+Route::delete('/customerDelete/{customerNumber}', [CustomerController::class, 'destroy']);
+Route::patch('/orderStatusUpdate/{orderNumber}/{orderStatus}', [OrderStatusController::class, 'update']);
