@@ -8,7 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Employee;
 
-
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
