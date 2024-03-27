@@ -13,6 +13,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\CustomerOrderStatusController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserRulesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +53,10 @@ Route::post('/userCreate', [UserController::class, 'store']);
 Route::delete('/customerDelete/{customerNumber}', [CustomerController::class, 'destroy']);
 Route::patch('/orderStatusUpdate/{orderNumber}/{orderStatus}', [OrderStatusController::class, 'update']);
 Route::patch('/changeCustomerOrderStatus/{orderNumber}/{status}', [CustomerOrderStatusController::class, 'update']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/create', [UserRulesController::class, 'create']);
+    Route::post('/update', [UserRulesController::class, 'update']);
+    Route::post('/delete', [UserRulesController::class, 'delete']);
+});
