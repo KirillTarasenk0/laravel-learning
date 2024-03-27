@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckEmployeeOfficeController;
-
 use App\Models\Product;
 use App\Http\Resources\ProductCollectionResource;
 use App\Http\Controllers\UpdateCustomerProfileController;
@@ -13,6 +12,7 @@ use App\Http\Controllers\UserRegistrationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderStatusController;
+use App\Http\Controllers\CustomerOrderStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +50,4 @@ Route::get('/userRegistration', [UserRegistrationController::class, 'index']);
 Route::post('/userCreate', [UserController::class, 'store']);
 Route::delete('/customerDelete/{customerNumber}', [CustomerController::class, 'destroy']);
 Route::patch('/orderStatusUpdate/{orderNumber}/{orderStatus}', [OrderStatusController::class, 'update']);
+Route::patch('/changeCustomerOrderStatus/{orderNumber}/{status}', [CustomerOrderStatusController::class, 'update']);

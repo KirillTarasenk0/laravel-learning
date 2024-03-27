@@ -13,6 +13,8 @@
         "predis/predis": "^2.2",
         "redisent/redis": "^1.10"
         "predis/predis": "^2.2"
+        "symfony/http-client": "^7.0",
+        "symfony/mailgun-mailer": "^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

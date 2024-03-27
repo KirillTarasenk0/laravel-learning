@@ -12,6 +12,8 @@ use App\Models\Customer;
 use App\Observers\CustomerObserver;
 use App\Events\OrderStatusEvent;
 use App\Listeners\OrderStatusListener;
+use App\Events\CustomerOrderStatusEvent;
+use App\Listeners\CustomerOrderStatusListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        CustomerOrderStatusEvent::class => [
+            CustomerOrderStatusListener::class,
         ],
         OrderStatusEvent::class => [
             OrderStatusListener::class,
