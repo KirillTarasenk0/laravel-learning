@@ -29,14 +29,16 @@ class DeleteOldFiles extends Command
     public function handle(): void
     {
         $paths = FileStorage::all();
+        $timeNow = Carbon::now();
+        $expiredPaths = [];
         foreach ($paths as $path) {
             $time = Storage::lastModified($path->filePath);
-            $modifiedTime = Carbon::parse($time)->addMonth(2);
-            $timeNow = Carbon::now();
+            $modifiedTime = Carbon::parse($time)->addDays(30);
             if ($modifiedTime > $timeNow) {
-                Storage::delete($path->filePath);
-                FileStorage::destroy($path->id);
+                $expiredPaths[] = $path->filePath;
             }
         }
+        Storage::delete($expiredPaths);
+        FileStorage::whereIn('filePath', $expiredPaths)->delete();
     }
 }
