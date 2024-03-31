@@ -18,6 +18,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'adminToken' => 'adminToken',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -141,6 +143,7 @@ return [
 
     'maintenance' => [
         'driver' => 'file',
+        'maintenance_mod' => false,
         // 'store' => 'redis',
     ],
 
@@ -183,6 +186,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Redis' => Illuminate\Support\Facades\Redis::class,
     ])->toArray(),
 
 ];
