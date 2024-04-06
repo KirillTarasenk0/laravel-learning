@@ -15,6 +15,9 @@ use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\CustomerOrderStatusController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserRulesController;
+use App\Http\Controllers\LoadLogController;
+use App\Http\Controllers\UploadingFilesController;
+use App\Http\Controllers\DocumentManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +63,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/update', [UserRulesController::class, 'update']);
     Route::post('/delete', [UserRulesController::class, 'delete']);
 });
+Route::post('/loadLog', [LoadLogController::class, 'store']);
+Route::post('/uploadFiles', [UploadingFilesController::class, 'store']);
+Route::post('/manageDocuments', [DocumentManagerController::class, 'store']);
